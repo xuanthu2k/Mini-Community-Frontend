@@ -2,6 +2,7 @@ import { Stack, Form, Alert, Button, } from "react-bootstrap";
 import {useNavigate} from "react-router-dom"
 import { useState } from "react";
 import axios from "axios";
+import SuccessModal from "./SuccessModal";
 
 const RegisterForm = () => {
 
@@ -14,9 +15,11 @@ const RegisterForm = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPass, setConfirmPass] = useState("")
+    const [showSuccess,setShowSuccess] = useState(false)
 
     const handleSubmit=(e)=>{
         e.preventDefault()
+        setShowSuccess(!showSuccess)
         if(password!==confirmPass){
             setWrongConfirm(!flag)
             setInvalidData(flag)
@@ -95,6 +98,7 @@ const RegisterForm = () => {
                     <Button className='py-3' variant="success" type="submit" >Register</Button>
             </Stack>
             </Form>
+            <SuccessModal showSuccess={showSuccess} />
         </>
     )
 }

@@ -2,15 +2,18 @@ import {useNavigate} from "react-router-dom"
 import {Form, Button, Stack, Alert} from 'react-bootstrap'
 import { useState } from "react"
 import axios from 'axios'
+import SuccessModal from "./SuccessModal"
 
 const LoginForm = () => {
     const navigate = useNavigate()
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [wrongAlert, setWrongAlert] = useState(false)
+    const [showSuccess,setShowSuccess] = useState(false)
 
     const handleSubmit = async(e)=>{
         e.preventDefault()
+        setShowSuccess(!showSuccess)
         axios.post(`https://mini-community.herokuapp.com/api/auth/login`,{
             username,
             password
@@ -73,7 +76,7 @@ const LoginForm = () => {
                     <Button className='py-3' variant="success" type="button" onClick={handleClick}>Register</Button>
             </Stack>
             </Form>
-
+            <SuccessModal showSuccess={showSuccess} />
 
         </>
      );
