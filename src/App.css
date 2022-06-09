@@ -1,0 +1,9 @@
+.lg-form{
+    width: 50%;
+    margin: auto;
+}
+@media only screen and (max-width: 1000px) {
+    .lg-form{
+        width: 100%;
+    }
+  }
